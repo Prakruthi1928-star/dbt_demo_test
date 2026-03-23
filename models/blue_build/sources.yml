@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: landing
+    database: DEMO_DB
+    schema: dbt_prakruthi1928star
+
+    tables:
+      - name: my_first_dbt_model

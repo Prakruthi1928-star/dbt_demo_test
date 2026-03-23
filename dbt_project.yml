@@ -16,6 +16,52 @@ clean-targets:
   - "dbt_packages"
  
 models:
+  Analytics:
+    blue_build:
+      +database: "DEMO_DB"
+
+      landing:
+        +materialized: view
+        +schema: LANDING
+
+      
+      staging:
+        +materialized: incremental
+        +schema: staging
+        
+      transform:
+        +materialized: incremental
+        +schema: transform
+
+      mart:
+        +schema: MART
+
+
+seeds:
   my_project:
-    +materialized: view
- 
+    +schema: SEED_DATA
+
+
+snapshots:
+  my_project:
+    +target_schema: SNAPSHOT
+
+
+data_tests:
+  +store_failures: true
+  +schema: TEST_FAILURES
+
+
+vars:
+  load_type: "incremental"
+  timezone: "UTC"
+
+
+on-run-start:
+  - "ALTER SESSION SET TIMEZONE = 'UTC'"
+
+
+quoting:
+  database: false
+  schema: false
+  identifier: false

@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: stg_sales
+    description: This is a general description to showcase sales in the staging layer 
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+
+      - name: customer_id
+        description: This is a unique identifier for the event
+        data_tests:
+          - not_null
+
+      - name: product_id
+        tests:
+          - not_null
+
+      - name: store_id
+        tests:
+          - not_null
